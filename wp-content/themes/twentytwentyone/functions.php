@@ -718,3 +718,15 @@ function woo_cart_but_icon ( $items, $args ) {
        $items .= do_shortcode('[woo_cart_but]');
        return $items;
 }
+
+/**
+ * Enable ajax add to cart for WoCommerce products
+ * @author DiviKingdom.Com
+ * @version 1.0.0
+ */
+function DiviKingdom_wc_single_ajax_add_to_cart(){
+    if(function_exists('is_product') && is_product()){
+        wp_enqueue_script('dk-wc-add-to-cart', get_stylesheet_directory_uri() . '/assets/js/ajax-add-to-cart.js', array('jquery'), false, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'DiviKingdom_wc_single_ajax_add_to_cart');
